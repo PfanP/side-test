@@ -19,12 +19,82 @@ func TestGenesisState_Validate(t *testing.T) {
 			valid:    true,
 		},
 		{
-			desc:     "valid genesis state",
+			desc: "valid genesis state",
 			genState: &types.GenesisState{
 
+				MovieList: []types.Movie{
+					{
+						Id: 0,
+					},
+					{
+						Id: 1,
+					},
+				},
+				MovieCount: 2,
+				ReviewList: []types.Review{
+					{
+						Id: 0,
+					},
+					{
+						Id: 1,
+					},
+				},
+				ReviewCount: 2,
 				// this line is used by starport scaffolding # types/genesis/validField
 			},
 			valid: true,
+		},
+		{
+			desc: "duplicated movie",
+			genState: &types.GenesisState{
+				MovieList: []types.Movie{
+					{
+						Id: 0,
+					},
+					{
+						Id: 0,
+					},
+				},
+			},
+			valid: false,
+		},
+		{
+			desc: "invalid movie count",
+			genState: &types.GenesisState{
+				MovieList: []types.Movie{
+					{
+						Id: 1,
+					},
+				},
+				MovieCount: 0,
+			},
+			valid: false,
+		},
+		{
+			desc: "duplicated review",
+			genState: &types.GenesisState{
+				ReviewList: []types.Review{
+					{
+						Id: 0,
+					},
+					{
+						Id: 0,
+					},
+				},
+			},
+			valid: false,
+		},
+		{
+			desc: "invalid review count",
+			genState: &types.GenesisState{
+				ReviewList: []types.Review{
+					{
+						Id: 1,
+					},
+				},
+				ReviewCount: 0,
+			},
+			valid: false,
 		},
 		// this line is used by starport scaffolding # types/genesis/testcase
 	} {

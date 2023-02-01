@@ -14,6 +14,24 @@ func TestGenesis(t *testing.T) {
 	genesisState := types.GenesisState{
 		Params: types.DefaultParams(),
 
+		MovieList: []types.Movie{
+			{
+				Id: 0,
+			},
+			{
+				Id: 1,
+			},
+		},
+		MovieCount: 2,
+		ReviewList: []types.Review{
+			{
+				Id: 0,
+			},
+			{
+				Id: 1,
+			},
+		},
+		ReviewCount: 2,
 		// this line is used by starport scaffolding # genesis/test/state
 	}
 
@@ -25,5 +43,9 @@ func TestGenesis(t *testing.T) {
 	nullify.Fill(&genesisState)
 	nullify.Fill(got)
 
+	require.ElementsMatch(t, genesisState.MovieList, got.MovieList)
+	require.Equal(t, genesisState.MovieCount, got.MovieCount)
+	require.ElementsMatch(t, genesisState.ReviewList, got.ReviewList)
+	require.Equal(t, genesisState.ReviewCount, got.ReviewCount)
 	// this line is used by starport scaffolding # genesis/test/assert
 }

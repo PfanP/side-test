@@ -17,3 +17,15 @@ const (
 func KeyPrefix(p string) []byte {
 	return []byte(p)
 }
+
+const (
+	MovieKey      = "Movie/value/"
+	MovieCountKey = "Movie/count/"
+	MovieTitleKey = "Movie/title/"
+)
+
+const (
+	ReviewKey      = "Review/value/"
+	ReviewCreatorIDKey = "Review/creator/id"
+	ReviewCountKey = "Review/count/"
+)
